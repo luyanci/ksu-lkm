@@ -46,11 +46,21 @@ jobs:
           echo "LAST_COMMIT=`git show-branch --no-name HEAD`" >> $GITHUB_OUTPUT
       - name: Display structure of downloaded files
         run: ls -R
+      - name: Zip AnyKernel3
+        run: |
+          for dir in AnyKernel3-*; do
+            if [ -d "$dir" ]; then
+              echo "----- Zip $dir -----"
+              (cd $dir && zip -r9 "$dir".zip ./* -x .git .gitignore ./*.zip && mv *.zip ..)
+            fi
+          done
       - name: release
         uses: softprops/action-gh-release@v2
         with:
-          files: android*-lkm/*_kernelsu.ko
-          name: ${{ github.run_id }}
+          files: |
+            AnyKernel3-*.zip
+            boot-images-*/Image-*/*.img.gz
+          name: gki-${{ github.run_id }}
           tag_name: ${{ github.run_id }}
           body: |
             Last KernelSU commit: ```${{ steps.ksu.outputs.LAST_COMMIT }}```
