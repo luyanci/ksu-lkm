@@ -1,4 +1,4 @@
-name: Release
+name: Release LKM
 on:
   workflow_dispatch:
 
