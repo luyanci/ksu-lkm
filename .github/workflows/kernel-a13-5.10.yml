@@ -50,6 +50,9 @@ jobs:
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
+        with:
+          name: Image-android13-5.10.*
+
 
       - uses: actions/checkout@v4
         with:
