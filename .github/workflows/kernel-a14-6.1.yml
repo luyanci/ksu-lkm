@@ -111,4 +111,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: boot-images-android14-6.1
-          path: Image-android14*/*.img.gz
+          path: Image-android14-6.1*/*.img.gz
