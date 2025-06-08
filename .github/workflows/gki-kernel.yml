@@ -174,8 +174,11 @@ jobs:
           ./LXC-DOCKER-OPEN-CONFIG.sh arch/arm64/configs/gki_defconfig -w
           wget https://github.com/wu17481748/android-lxc-docker/raw/main/cgroup.patch
           patch -p1 < cgroup.patch
-          wget https://github.com/wu17481748/android-lxc-docker/raw/main/xt_qtaguid.patch
-          patch -p1 < xt_qtaguid.patch
+          if [ -f ./net/netfilter/xt_qtaguid.c ]; then
+            wget https://github.com/wu17481748/android-lxc-docker/raw/main/xt_qtaguid.patch
+            patch -p1 < xt_qtaguid.patch
+          fi
+          
 
           # remove config check
           sed -i 's/check_defconfig//' ./build.config.gki
