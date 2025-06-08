@@ -169,12 +169,11 @@ jobs:
         if: inputs.build_lkm == false && inputs.with_lxc == true
         run: |
           cd common
-          git submodule add https://github.com/tomxi1997/lxc-docker-support-for-android utils
-          chmod +x ./utils/lxc-patch.sh
-          sed -i 's/vendor\/cmi_user_defconfig/gki_defconfig/g' ./utils/lxc-patch.sh
-          sed -i '23d' ./utils/lxc-patch.sh
-          ./utils/lxc-patch.sh
-
+          wget https://github.com/wu17481748/android-lxc-docker/raw/main/LXC-DOCKER-OPEN-CONFIG.sh
+          chmod +x LXC-DOCKER-OPEN-CONFIG.sh
+          ./LXC-DOCKER-OPEN-CONFIG.sh arch/arm64/configs/gki_defconfig
+          wget https://github.com/wu17481748/android-lxc-docker/raw/main/cgroup.patch
+          patch -p1 < cgroup.patch
           # remove config check
           sed -i 's/check_defconfig//' ./build.config.gki
 
