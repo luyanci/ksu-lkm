@@ -171,7 +171,7 @@ jobs:
           cd common
           wget https://github.com/wu17481748/android-lxc-docker/raw/main/LXC-DOCKER-OPEN-CONFIG.sh
           chmod +x LXC-DOCKER-OPEN-CONFIG.sh
-          ./LXC-DOCKER-OPEN-CONFIG.sh arch/arm64/configs/gki_defconfig
+          ./LXC-DOCKER-OPEN-CONFIG.sh arch/arm64/configs/gki_defconfig -w
           wget https://github.com/wu17481748/android-lxc-docker/raw/main/cgroup.patch
           patch -p1 < cgroup.patch
           # remove config check
