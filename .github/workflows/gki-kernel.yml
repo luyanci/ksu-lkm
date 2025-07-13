@@ -52,11 +52,6 @@ on:
         type: boolean
         description: Build lkm
         default: true
-      with_lxc:
-        required: false
-        type: boolean
-        description: add lxc support
-        default: true
     secrets:
       BOOT_SIGN_KEY:
         required: false
@@ -163,20 +158,6 @@ jobs:
           key: gki-kernel-aarch64-${{ inputs.version_name }}
           max-size: 2G
           save: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-
-      - name: Setup LXC Docker
-        working-directory: android-kernel
-        if: inputs.build_lkm == false && inputs.with_lxc == true
-        run: |
-          cd common
-          git submodule add https://github.com/tomxi1997/lxc-docker-support-for-android utils
-          chmod +x ./utils/lxc-patch.sh
-          sed -i 's/vendor\/cmi_user_defconfig/gki_defconfig/g' ./utils/lxc-patch.sh
-          sed -i '23d' ./utils/lxc-patch.sh
-          ./utils/lxc-patch.sh
-
-          # remove config check
-          sed -i 's/check_defconfig//' ./build.config.gki
 
       - name: Setup for LKM
         if: inputs.build_lkm == true
