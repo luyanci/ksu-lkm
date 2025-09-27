@@ -22,23 +22,23 @@ jobs:
       matrix:
         include:
           - version: "android12-5.10"
-            sub_level: 236
-            os_patch_level: 2025-05
+            sub_level: 240
+            os_patch_level: 2025-09
           - version: "android13-5.10"
-            sub_level: 234
-            os_patch_level: 2025-03
+            sub_level: 238
+            os_patch_level: 2025-07
           - version: "android13-5.15"
-            sub_level: 178
-            os_patch_level: 2025-03
+            sub_level: 189
+            os_patch_level: 2025-09
           - version: "android14-5.15"
-            sub_level: 178
-            os_patch_level: 2025-03
+            sub_level: 185
+            os_patch_level: 2025-07
           - version: "android14-6.1"
-            sub_level: 134
-            os_patch_level: 2025-05
+            sub_level: 145
+            os_patch_level: 2025-09
           - version: "android15-6.6"
-            sub_level: 87
-            os_patch_level: 2025-05
+            sub_level: 98
+            os_patch_level: 2025-09
     uses: ./.github/workflows/gki-kernel.yml
     with:
       version: ${{ matrix.version }}
