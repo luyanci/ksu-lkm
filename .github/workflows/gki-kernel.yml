@@ -146,7 +146,7 @@ jobs:
           COMMON_ROOT=$GITHUB_WORKSPACE/android-kernel/common
           KSU_ROOT=$GITHUB_WORKSPACE/KernelSU
           ABI_XML=$COMMON_ROOT/android/abi_gki_aarch64.xml
-          if [ "${{ inputs.version_name }}" == "android16-6.12" ]; then
+          if [ "${{ inputs.version }}" == "android16-6.12" ]; then
             SYMBOL_LIST=$COMMON_ROOT/common/gki/aarch64/symbols/base
           else
             SYMBOL_LIST=$COMMON_ROOT/android/abi_gki_aarch64
@@ -172,7 +172,7 @@ jobs:
           ast-grep -U -p '$$$ check_exports($$$) {$$$}' -r '' common/scripts/mod/modpost.c
           ast-grep -U -p 'check_exports($$$);' -r '' common/scripts/mod/modpost.c
           sed -i '/config KSU/,/help/{s/default y/default m/}' common/drivers/kernelsu/Kconfig
-          if [ "${{ inputs.version_name }}" == "android16-6.12" ]; then
+          if [ "${{ inputs.version }}" == "android16-6.12" ]; then
             echo "drivers/kernelsu/kernelsu.ko" >> common/gki/aarch64/modules
           else
             echo "drivers/kernelsu/kernelsu.ko" >> common/android/gki_aarch64_modules
