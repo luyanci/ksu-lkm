@@ -1,6 +1,7 @@
 name: Android 13 5.15
 
 on:
+  workflow_dispatch:
   workflow_call:  # This allows this workflow to be called from another workflow
   
 jobs:
