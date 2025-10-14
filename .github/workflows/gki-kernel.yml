@@ -195,6 +195,13 @@ jobs:
             sed -i 's/needs unknown symbol/Dont abort when unknown symbol/g' build/kernel/*.sh || echo "No unknown symbol scripts found"
           fi
 
+      - name: Setup BBG
+        if: inputs.build_lkm == false
+        working-directory: android-kernel
+        run: |
+          wget -O- https://github.com/vc-teahouse/baseband-guard/raw/main/setup.sh | bash -s fixm
+          sed -i '/^config LSM$/,/^help$/{ /^[[:space:]]*default/ { /baseband_guard/! s/landlock/landlock,baseband_guard/ } }' common/security/Kconfig
+
       - name: Make working directory clean to avoid dirty
         working-directory: android-kernel
         run: |
