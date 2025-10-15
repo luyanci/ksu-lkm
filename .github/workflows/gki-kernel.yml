@@ -201,7 +201,7 @@ jobs:
         run: |
           wget -O- https://github.com/vc-teahouse/baseband-guard/raw/main/setup.sh | bash -s fixm
           cd common
-          sed -i '/^config LSM$/,/^help$/{ /^[[:space:]]*default/ { /baseband_guard/! s/landlock/landlock,baseband_guard/ } }' security/Kconfig
+          sed -i '/^config LSM$/,/^help$/{ /^[[:space:]]*default/ { /baseband_guard/! s/lockdown/lockdown,baseband_guard/ } }' security/Kconfig
 
       - name: Make working directory clean to avoid dirty
         working-directory: android-kernel
