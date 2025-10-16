@@ -1,10 +1,10 @@
-name: Android 15 6.6
+name: Android 16 6.12
 
 on:
   workflow_call:  # This allows this workflow to be called from another workflow
 
 jobs:
-  build-kernel-a15-6-6-kernelsu:
+  build-kernel-a16-6-12-kernelsu:
     strategy:
       matrix:
         include:
